@@ -266,7 +266,38 @@ require('lazy').setup({
   --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
+  { 'roxma/LanguageServer-php-neovim' },
+
+  { -- No anda sin las otras cosas instaladas 
+    'javiorfo/nvim-soil',
+    lazy = true,
+    ft = "plantuml",
+  },
+
+  {
+    'saecki/crates.nvim',
+    event = { "BufRead Cargo.toml" },
+    config = function()
+        require('crates').setup()
+    end,
+  },
+  {
+    "xiyaowong/transparent.nvim",
+
+    groups = { -- table: default groups
+    'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+    'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+    'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+    'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+    'EndOfBuffer',
+    },
+
+    extra_groups = {
+    "NormalFloat",
+    "NvimTreeNormal",
+    },
+  },
+
 }, {})
 
 -- [[ Setting options ]]
@@ -566,12 +597,18 @@ local servers = {
   -- clangd = {},
   -- gopls = {},
   -- pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  rust_analyzer = { filetypes = {'rust'} },
+
+  tsserver = {filetypes = {'javascript'} },
+
+  html = { filetypes = {'html'} },
+
+  cssls = { filetypes = {'css'} },
+
+  phpactor = { filetypes = {'php'} },
 
   lua_ls = {
-    Lua = {
+    Lua = { filetypes = {'lua'},
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
       -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
@@ -586,6 +623,7 @@ require('neodev').setup()
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
@@ -656,6 +694,23 @@ cmp.setup {
     { name = 'path' },
   },
 }
+
+require('custom/scripts')
+
+require('soil').setup {
+  puml_jar = "/home/arcemist/plantuml-1.2024.3.jar",
+
+  image = {
+    darkmode = false,
+    format = "png",
+  },
+}
+
+--vim.cmd [[
+-- if has('nvim')
+--    autocmd BufRead Cargo.toml call crates#toggle()
+--  end
+--]]
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
