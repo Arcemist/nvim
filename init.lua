@@ -622,7 +622,7 @@ local servers = {
 
   cssls = { filetypes = {'css'} },
 
-  phpactor = { filetypes = {'php'} },
+  intelephense = { filetypes = {'php'} },
 
   lua_ls = {
     Lua = { filetypes = {'lua'},
