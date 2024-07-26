@@ -37,55 +37,69 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+require('lazy').setup("user") -- llama toda la configuracion que ta el la carpeta 'lua/user'
+
+-- See `:help vim.o`
+-- Cambia los numeros de la izquierda a relativos
+vim.opt.relativenumber = true
+
 -- Cambiar la indentacion por defecto
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
--- Cambia los numeros de la izquierda a relativos
-vim.opt.relativenumber = true
+-- Hacer los bordes escapen del cursor
+vim.opt.scrolloff = 3
 
-require('lazy').setup("user") -- llama toda la configuracion que ta el la carpeta 'lua/user'
-
--- [[ Setting options ]]
--- See `:help vim.o`
--- NOTE: You can change these options as you wish!
+-- No mostar el modo en la barrita de los commandos
+vim.opt.showmode = false
 
 -- Set highlight on search
-vim.o.hlsearch = false
-
--- Make line numbers default
-vim.wo.number = true
+vim.opt.hlsearch = true
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
+vim.opt.mouse = 'a'
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus'
+
+-- Acomoda como se ven ciertas formas de espaciar
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+-- Arreglar como se habren las nuevas pestañas
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Muestra la preview de los commandos que lo soportan
+vim.opt.inccommand = "split"
+
+-- Resalta la linea en la que esta el cursor
+vim.opt.cursorline = true
 
 -- Enable break indent
-vim.o.breakindent = true
+vim.opt.breakindent = true
 
 -- Save undo history
-vim.o.undofile = true
+vim.opt.undofile = true
 
 -- Case-insensitive searching UNLESS \C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
+vim.opt.signcolumn = 'yes'
 
 -- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.opt.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 
 -- [[ Basic Keymaps ]]
 
