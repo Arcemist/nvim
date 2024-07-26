@@ -1,1 +1,4 @@
-return { 'roxma/LanguageServer-php-neovim' }
+return {
+  event = { "BufRead *.php" },
+  'roxma/LanguageServer-php-neovim'
+}

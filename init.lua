@@ -37,6 +37,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Cambiar la indentacion por defecto
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+
+-- Cambia los numeros de la izquierda a relativos
+vim.opt.relativenumber = true
+
 require('lazy').setup("user") -- llama toda la configuracion que ta el la carpeta 'lua/user'
 
 -- [[ Setting options ]]
@@ -301,50 +308,84 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+local wk = require('which-key')
+
+wk.add (
 -- document existing key chains
-require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-}
+{
+  mode = 'n',
+  hidden = false,
+  { '<leader>c', group = '[C]ode' },
+  { '<leader>d', group = '[D]ocument' },
+  { '<leader>g', group = '[G]it' },
+  { '<leader>h', group = 'Git [H]unk' },
+  { '<leader>r', group = '[R]ename' },
+  { '<leader>s', group = '[S]earch' },
+  { '<leader>t', group = '[T]oggle' },
+  { '<leader>w', group = '[W]orkspace' },
+},
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
-require('which-key').register({
-  ['<leader>'] = { name = 'VISUAL <leader>' },
-  ['<leader>h'] = { 'Git [H]unk' },
-}, { mode = 'v' })
+{
+  mode = "v",
+  { '<leader>', group = 'VISUAL <leader>'},
+  { '<leader>h', group = 'Git [H]unk'},
+})
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
 require('mason').setup()
 require('mason-lspconfig').setup()
 
--- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  rust_analyzer = { filetypes = {'rust'} },
+  clangd = {
+    filetypes = {'c'},
+  },
 
-  tsserver = {filetypes = {'javascript'} },
+  gopls = {
+    filetypes = {'go'}
+  },
 
-  html = { filetypes = {'html'} },
+  pyright = {
+    filetypes = {'python'}
+  },
 
-  cssls = { filetypes = {'css'} },
+  rust_analyzer = {
+    filetypes = {'rust'},
+  },
 
-  intelephense = { filetypes = {'php'} },
+  sqls = {
+    filetypes = {'sql'},
+  },
+
+  tsserver = {
+    filetypes = {'javascript'},
+  },
+
+  html = {
+    filetypes = {'html'},
+  },
+
+  cssls = {
+    filetypes = {'css'},
+  },
+
+  volar = {
+    filetypes = {'vue'},
+  },
+
+  intelephense = {
+    filetypes = {'php'},
+  },
+
+  bashls = {
+    filetypes = {'bash'},
+  },
 
   lua_ls = {
     Lua = { filetypes = {'lua'},
@@ -436,12 +477,6 @@ cmp.setup {
 
 -- setup must be called before loading
 vim.cmd.colorscheme "catppuccin"
-
---vim.cmd [[
--- if has('nvim')
---    autocmd BufRead Cargo.toml call crates#toggle()
---  end
---]]
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
