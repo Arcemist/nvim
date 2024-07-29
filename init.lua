@@ -66,7 +66,7 @@ vim.opt.clipboard = 'unnamedplus'
 
 -- Acomoda como se ven ciertas formas de espaciar
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '» ', nbsp = '␣' }
 
 -- Arreglar como se habren las nuevas pestañas
 vim.opt.splitright = true
