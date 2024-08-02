@@ -37,7 +37,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup("user") -- llama toda la configuracion que ta el la carpeta 'lua/user'
+-- llama toda la configuracion que ta el la carpeta 'lua/user'
+require('lazy').setup("user")
 
 -- See `:help vim.o`
 -- Cambia los numeros de la izquierda a relativos
@@ -357,26 +358,6 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  clangd = {
-    filetypes = {'c'},
-  },
-
-  gopls = {
-    filetypes = {'go'}
-  },
-
-  pyright = {
-    filetypes = {'python'}
-  },
-
-  rust_analyzer = {
-    filetypes = {'rust'},
-  },
-
-  sqls = {
-    filetypes = {'sql'},
-  },
-
   tsserver = {
     filetypes = {'javascript'},
   },
@@ -395,10 +376,6 @@ local servers = {
 
   intelephense = {
     filetypes = {'php'},
-  },
-
-  bashls = {
-    filetypes = {'bash'},
   },
 
   lua_ls = {
