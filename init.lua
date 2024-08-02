@@ -21,6 +21,10 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Desabilitando 'netrw' pa que ande mejor el nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -128,6 +132,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+-- Añadir el coso al costado que muestra los archivos
+require('nvim-tree').setup()
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
