@@ -37,7 +37,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup("user") -- llama toda la configuracion que ta el la carpeta 'lua/user'
+require('lazy').setup("plugins") -- llama toda la configuracion que ta el la carpeta 'lua/user'
 
 -- See `:help vim.o`
 -- Cambia los numeros de la izquierda a relativos
@@ -222,7 +222,7 @@ vim.defer_fn(function()
     highlight = { enable = true },
     indent = { enable = true },
     incremental_selection = {
-      enable = true,
+      enable = false, -- Cambiar a 'True' cuando vea mejores bindings
       keymaps = {
         init_selection = '<c-space>',
         node_incremental = '<c-space>',
@@ -337,6 +337,7 @@ wk.add (
   { '<leader>s', group = '[S]earch' },
   { '<leader>t', group = '[T]oggle' },
   { '<leader>w', group = '[W]orkspace' },
+  { '<leader>n', group = '[N]eorg'}
 },
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
@@ -454,11 +455,8 @@ cmp.setup {
     completeopt = 'menu,menuone,noinsert',
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
