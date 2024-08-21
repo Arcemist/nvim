@@ -15,9 +15,11 @@ return {
       ["core.dirman"] = {
         config = {
           workspaces = {
-            notes = "~/Documents/Notas",
+            Programacion = '~/Documents/Notas/Programming/',
+            Matematica = '~/Documents/Notas/Math/',
+            Independencia = '~/Documents/Notas/SurvivalSkills/',
+            default = '~/Documents/Notas/',
           },
-          default_workspace = "notes",
         },
       },
       ["core.completion"] = {
@@ -48,9 +50,6 @@ return {
 vim.keymap.set('n', '<CR>', '<Plug>(neorg.esupports.hop.hop-link)', {
   desc = 'Go to link'
 }),
-vim.keymap.set('n', '<leader>n<leader>' ,':Neorg workspace notes\n', {
-  desc = 'Go to my notes'
-}),
 vim.keymap.set('n', '<leader>nn', '<Plug>(neorg.dirman.new-note)', {
   desc = 'Create a new note'
 }),
@@ -62,6 +61,9 @@ vim.keymap.set('n', '<leader>ng', '<Plug>(neorg.telescope.find_linkable)', {
 }),
 vim.keymap.set('n', '<leader>nl', '<Plug>(neorg.telescope.insert_link)', {
   desc = 'Insert a link'
+}),
+vim.keymap.set('n', '<leader>nw', '<Plug>(neorg.telescope.switch_workspace)', {
+  desc = 'switch workspace'
 }),
 vim.keymap.set('n', '<C-Space>', '<Plug>(neorg.qol.todo-items.todo.task-cycle)', {
   desc = 'Clicle the states of a task',
