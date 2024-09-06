@@ -1,6 +1,10 @@
 # Check Lua Formatting
 name: Check Lua Formatting
-on: pull_request
+on: 
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   stylua-check:

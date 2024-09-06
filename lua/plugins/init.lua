@@ -4,4 +4,5 @@ return {
 	{import = "plugins.git"},
 	{import = "plugins.notes"},
 	{import = "plugins.ux"},
+	{import = "plugins.dx"}
 }

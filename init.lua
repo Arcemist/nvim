@@ -37,7 +37,43 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup("plugins") -- llama toda la configuracion que ta el la carpeta 'lua/user'
+require('lazy').setup("plugins") -- llama toda la configuracion que ta el la carpeta 'lua/plugins'
+
+require("image").setup({
+  backend = "kitty",
+  integrations = {
+    markdown = {
+      enabled = true,
+      clear_in_insert_mode = false,
+      download_remote_images = true,
+      only_render_image_at_cursor = false,
+      filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+    },
+    neorg = {
+      enabled = true,
+      clear_in_insert_mode = false,
+      download_remote_images = true,
+      only_render_image_at_cursor = false,
+      filetypes = { "norg" },
+    },
+    html = {
+      enabled = false,
+    },
+    css = {
+      enabled = false,
+    },
+  },
+  max_width = nil,
+  max_height = nil,
+  max_width_window_percentage = nil,
+  max_height_window_percentage = 50,
+  window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
+  window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+  editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
+  tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+  hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
+})
+
 
 -- See `:help vim.o`
 -- Cambia los numeros de la izquierda a relativos
@@ -49,6 +85,9 @@ vim.opt.tabstop = 4
 
 -- Hacer los bordes escapen del cursor
 vim.opt.scrolloff = 3
+
+-- Ajusta el scroll pa que no se quede re duro con lineas virtuales
+vim.opt.smoothscroll = true
 
 -- No mostar el modo en la barrita de los commandos
 vim.opt.showmode = false
@@ -65,8 +104,8 @@ vim.opt.mouse = 'a'
 vim.opt.clipboard = 'unnamedplus'
 
 -- Acomoda como se ven ciertas formas de espaciar
-vim.opt.list = true
-vim.opt.listchars = { nbsp = '␣' }
+vim.opt.list = false
+vim.opt.listchars = {  nbsp = '␣' }
 
 -- Arreglar como se habren las nuevas pestañas
 vim.opt.splitright = true
@@ -378,6 +417,7 @@ local servers = {
     filetypes = {'sql'},
   },
 
+--ts_ls
   tsserver = {
     filetypes = {'javascript'},
   },

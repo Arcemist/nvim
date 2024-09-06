@@ -7,17 +7,18 @@ return {
     load = {
       ["core.defaults"] = {},
       ["core.concealer"] = {},
+      ["core.looking-glass"] = {},
       ["core.keybinds"] = {
         config = {
-        default_keybinds = false,
+         default_keybinds = false,
         },
       },
       ["core.dirman"] = {
         config = {
           workspaces = {
-            Programacion = '~/Documents/Notas/Programming/',
-            Matematica = '~/Documents/Notas/Math/',
-            Independencia = '~/Documents/Notas/SurvivalSkills/',
+            Programming = '~/Documents/Notas/Programming/',
+            Math = '~/Documents/Notas/Math/',
+            SurvivalSkills = '~/Documents/Notas/SurvivalSkills/',
             default = '~/Documents/Notas/',
           },
         },
@@ -34,6 +35,11 @@ return {
           configure_parsers = true
         }
       },
+      ["core.latex.renderer"] = {
+        config = {
+          render_on_enter = true
+        }
+      },
     },
   }
   vim.wo.foldlevel = 99
@@ -45,6 +51,8 @@ return {
     {'nvim-neorg/neorg-telescope'}
   },
 },
+
+
 
 
 vim.keymap.set('n', '<CR>', '<Plug>(neorg.esupports.hop.hop-link)', {
@@ -63,7 +71,10 @@ vim.keymap.set('n', '<leader>nl', '<Plug>(neorg.telescope.insert_link)', {
   desc = 'Insert a link'
 }),
 vim.keymap.set('n', '<leader>nw', '<Plug>(neorg.telescope.switch_workspace)', {
-  desc = 'switch workspace'
+  desc = 'Switch workspace'
+}),
+vim.keymap.set('n', '<leader>nc', '<Plug>(neorg.looking-glass.magnify-code-block)', {
+  desc = 'Edit code in separate buffer'
 }),
 vim.keymap.set('n', '<C-Space>', '<Plug>(neorg.qol.todo-items.todo.task-cycle)', {
   desc = 'Clicle the states of a task',
