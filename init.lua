@@ -167,6 +167,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
@@ -434,8 +436,9 @@ local servers = {
     filetypes = {'vue'},
   },
 
-  intelephense = {
+  phpactor = {
     filetypes = {'php'},
+    root_pattern = {"composer.json", ".git"}
   },
 
   bashls = {

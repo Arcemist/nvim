@@ -53,8 +53,6 @@ return {
 },
 
 
-
-
 vim.keymap.set('n', '<CR>', '<Plug>(neorg.esupports.hop.hop-link)', {
   desc = 'Go to link'
 }),
