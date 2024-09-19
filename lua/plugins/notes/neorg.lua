@@ -35,11 +35,6 @@ return {
           configure_parsers = true
         }
       },
-      ["core.latex.renderer"] = {
-        config = {
-          render_on_enter = true
-        }
-      },
     },
   }
   vim.wo.foldlevel = 99
