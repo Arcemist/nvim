@@ -419,8 +419,7 @@ local servers = {
     filetypes = {'sql'},
   },
 
---ts_ls
-  tsserver = {
+  ts_ls = {
     filetypes = {'javascript'},
   },
 
