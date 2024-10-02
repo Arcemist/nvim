@@ -49,13 +49,6 @@ require("image").setup({
       only_render_image_at_cursor = false,
       filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
     },
-    neorg = {
-      enabled = true,
-      clear_in_insert_mode = false,
-      download_remote_images = true,
-      only_render_image_at_cursor = false,
-      filetypes = { "norg" },
-    },
     html = {
       enabled = false,
     },
@@ -377,8 +370,8 @@ wk.add (
   { '<leader>r', group = '[R]ename' },
   { '<leader>s', group = '[S]earch' },
   { '<leader>t', group = '[T]oggle' },
-  { '<leader>w', group = '[W]orkspace' },
-  { '<leader>n', group = '[N]eorg'}
+  { '<leader>o', group = '[O]bsidian' },
+  { '<leader>w', group = '[W]orkspace' }
 },
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
@@ -525,7 +518,6 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    { name = 'neorg' },
     { name = 'path' },
   },
 }
