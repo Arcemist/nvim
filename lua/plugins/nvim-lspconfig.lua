@@ -199,5 +199,6 @@ return {
     }
 
     lspconfig.rust_analyzer.setup {}
+    lspconfig.pylsp.setup {}
   end,
 }
